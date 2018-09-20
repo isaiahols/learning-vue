@@ -94,7 +94,7 @@ export default {
       this.botList.splice(index, 1);
     },
     editHealthAttack(index, what, val) {
-      this.botList[index][what]=val
+      this.botList[index][what] = val;
     },
     addFightBot(bot) {
       if (this.fightBots.length < 2) {
@@ -110,10 +110,15 @@ export default {
       if (this.fightBots.length === 2) {
         let win = Math.random() * 10;
         let winner;
-        if (win < 5) {
-          winner = this.fightBots[0];
+        const { fightBots } = this;
+        let f1 =fightBots[0],
+            f2 =fightBots[1];
+
+        if (f1.attack - f2.health>0) {
+          // if (win < 5) {
+          winner = f2;
         } else {
-          winner = this.fightBots[1];
+          winner = f1;
         }
         alert(`The winner is ${winner.name}`);
         this.fightBots = [];
